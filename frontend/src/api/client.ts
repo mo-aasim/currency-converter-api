@@ -1,4 +1,4 @@
-import { ConvertResult, RatePoint } from "../types";
+import { ConvertResult, RatePoint, CountryList, RatesResponse } from "../types";
 
 async function request<T>(path: string): Promise<T> {
   const res = await fetch(`/api${path}`);
@@ -17,9 +17,11 @@ async function request<T>(path: string): Promise<T> {
 
 export const api = {
   currencies: () =>
-    request<{ currencies: string[]; countryList: Record<string, string> }>(
+    request<{ currencies: string[]; countryList: CountryList }>(
       "/currencies"
     ),
+  rates: (base: string) =>
+    request<RatesResponse>(`/rates/${encodeURIComponent(base)}`),
   convert: (from: string, to: string, amount: number) =>
     request<ConvertResult>(
       `/convert?from=${encodeURIComponent(from)}&to=${encodeURIComponent(
@@ -28,6 +30,8 @@ export const api = {
     ),
   history: (base: string, target: string) =>
     request<{ base: string; target: string; points: RatePoint[] }>(
-      `/history?base=${encodeURIComponent(base)}&target=${encodeURIComponent(target)}`
+      `/history?base=${encodeURIComponent(base)}&target=${encodeURIComponent(
+        target
+      )}`
     ),
 };
