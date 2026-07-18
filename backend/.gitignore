@@ -1,0 +1,9 @@
+# Env files
+.env
+.env.local
+dist/
+node_modules/
+prisma/dev.db
+prisma/dev.db-journal
+*.log
+.DS_Store

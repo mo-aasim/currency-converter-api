@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model RatePoint {
+  id        String   @id @default(cuid())
+  base      String
+  target    String
+  rate      Float
+  createdAt DateTime @default(now())
+}
