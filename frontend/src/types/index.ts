@@ -12,4 +12,10 @@ export interface RatePoint {
   rate: number;
 }
 
+export interface RatesResponse {
+  rates: Record<string, number>;
+  fetchedAt: string;
+  cached: boolean;
+}
+
 export type CountryList = Record<string, string>;
