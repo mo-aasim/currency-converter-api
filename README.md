@@ -5,10 +5,13 @@ A currency conversion application whose **backend proxies and caches** a public 
 > **Stack:** React 18 + TypeScript (Vite) · Express + TypeScript · node-fetch · in-memory TTL cache · SQLite (rate history) · Zod · Tailwind CSS · Recharts
 
 ## Features
+- 🌗 **Light/Dark theme** toggle (respects OS preference, persisted to `localStorage`)
+- 🎬 **Framer Motion** page transitions and micro-interactions
 - 🔄 **Live conversion** with debounced input and loading states
-- 🌍 **160+ currencies** with flag indicators
+- 🌍 **160+ currencies** with flag indicators and a dedicated **browse** page
 - 📊 **Multi-currency panel** — see one amount across several currencies at once
-- 📈 **Rate-trend chart** backed by a real `RatePoint` table (SQLite)
+- 📈 **Rate-trend chart** backed by a real `RatePoint` table (SQLite), plus a dedicated **Trends** page
+- 💾 **Saved pairs** (favorites) and **rate alerts** (target rate, persisted to `localStorage`)
 - 🕘 **Conversion history** (persisted to `localStorage`)
 - 📋 Copy result to clipboard, animated swap
 - ⚡ Backend **TTL cache** + **rate limiting** protecting the upstream
@@ -18,7 +21,10 @@ A currency conversion application whose **backend proxies and caches** a public 
 ```
 currency-converter/
 ├── backend/   Express + TS, cache + rate-limit  (port 4002)
-└── frontend/  React + TS + Vite + Tailwind + Recharts (port 5175)
+│   └── /api/currencies, /api/rates/:base, /api/convert, /api/history
+└── frontend/  React + TS + Vite + Tailwind + Recharts + Framer Motion (port 5175)
+    ├── pages: Converter, Currencies (browse), Trends
+    └── shared: ThemeProvider, motion/feedback components, Navbar, Footer
 ```
 
 ## Getting Started
